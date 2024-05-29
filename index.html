@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- Heading using Html -->
+    <!-- <div id="root">
+        <h1>Hello World</h1>
+    </div> -->
+
+    <!-- using js -->
+    <!-- <script>
+        const heading = document.createElement('h1')
+        heading.innerHTML = "Hello World"
+        const root = document.getElementById("root")
+        root.appendChild(heading)
+
+    </script> -->
+
+    <!-- using react from CDN -->
+    <div id="root">
+    </div>
+    
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="app.js"></script>
+    <!-- <script>
+        const heading2 = React.createElement("h1", {}, "Hello World")
+        const root = ReactDOM.createRoot(document.getElementById("root"))
+        root.render(heading2)
+    </script> -->
+</body>
+<!-- Does order of the tags here matter? What will happen if we put app.js above react?
+What is cross origin?
+What is a React element?
+Suppose there is an h1 tab written inside root div in index.html, what will the browser show thn? Will it show the content from app.js below the index.html h1 tag?
+Is reaact a library or fframework? Why library? - Because it works at a particular piece of code , div with root id in this case, React can work in existing apps as well using cdn links, other tha frameworks, we dont need to create an a whole app using react
+
+-->
+</html>

@@ -1,14 +1,19 @@
-const RestoCard = () => {
+import { CDN_URL } from "../utils/constant";
+import { Link } from "react-router-dom";
+const RestoCard = ({ resData }) => {
+  const { cloudinaryImageId, name, avgRating, cuisines, sla, costForTwo, id } =
+    resData;
+  console.log("ResData");
   return (
     <div className="res-card">
-      <img
-        className="res-logo"
-        src="https://www.infinitimall.com/wp-content/uploads/2022/01/Chinese-Wok-Food-Court-Malad-Infiniti-Mall-1-1024x683.jpg"
-      />
-      <h3>Wok Of China</h3>
-      <h4>Asian, Chinese, Continental</h4>
-      <h5>4.5 stars</h5>
-      <h5>48 min</h5>
+      <img className="res-logo" alt="Img" src={CDN_URL + cloudinaryImageId} />
+      <Link to={"/restaurants/" + id}>
+        <h3>{name}</h3>
+        <h4>{cuisines.join(", ")}</h4>
+        <h4>{avgRating}</h4>
+        <h4>{costForTwo}</h4>
+        <h4>{sla.deliveryTime}min</h4>
+      </Link>
     </div>
   );
 };

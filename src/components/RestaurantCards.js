@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 const RestoCard = ({ resData }) => {
   const { cloudinaryImageId, name, avgRating, cuisines, sla, costForTwo, id } =
     resData;
-  console.log("ResData");
   return (
     <div className="res-card">
       <img className="res-logo" alt="Img" src={CDN_URL + cloudinaryImageId} />

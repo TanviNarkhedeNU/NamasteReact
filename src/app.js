@@ -1,12 +1,15 @@
-import React from "react"; // importing react from node module
+import React, { lazy, Suspense } from "react"; // importing react from node module
 import ReactDOM from "react-dom/client";
 import Header from "./components/Header";
 import Body from "./components/Body";
 import About from "./components/About";
 import Contact from "./components/Contact";
 import Error from "./components/Error";
+import Shimmer from "./components/Shimmer";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
-import RestaurantMenu from "./components/RestaurantMenu";
+// import RestaurantMenu from "./components/RestaurantMenu";
+const RestaurantMenu = lazy(() => import("./components/RestaurantMenu"));
+
 // react element => js object => root.render => becomes html element => will replace everything written in root div
 
 const AppLayout = () => {
@@ -38,7 +41,11 @@ const appRouter = createBrowserRouter([
       },
       {
         path: "restaurants/:resId", //:resId means this part is dynamic
-        element: <RestaurantMenu />,
+        element: (
+          <Suspense fallback={<Shimmer />}>
+            <RestaurantMenu />
+          </Suspense>
+        ),
       },
     ],
     errorElement: <Error />,

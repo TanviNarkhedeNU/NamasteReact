@@ -38,36 +38,38 @@ const Body = () => {
   }
   return (
     <div className="body">
-      <div className="search-container">
-        <input
-          className="search-text"
-          value={searchText}
-          onChange={(e) => setSearchText(e.target.value)}
-        />
-        <button
-          className="search-btn"
-          onClick={() => {
-            const filteredRestaurant = resList?.filter((res) =>
-              res.info.name.toLowerCase().includes(searchText.toLowerCase())
-            );
-            setFilteredList(filteredRestaurant);
-          }}
-        >
-          Search
-        </button>
+      <div className="flex m-3">
+        <div className="search-container">
+          <input
+            className="border-solid border-[1px] border-black px-2 py-2 rounded-md"
+            value={searchText}
+            onChange={(e) => setSearchText(e.target.value)}
+          />
+          <button
+            className="px-3 py-2 bg-purple-200 ml-2 shadow-md rounded-md"
+            onClick={() => {
+              const filteredRestaurant = resList?.filter((res) =>
+                res.info.name.toLowerCase().includes(searchText.toLowerCase())
+              );
+              setFilteredList(filteredRestaurant);
+            }}
+          >
+            Search
+          </button>
+        </div>
+        <div className="px-5 py-2 bg-blue-100 ml-3 rounded-md shadow-md">
+          <button
+            className="filter-btn"
+            onClick={() => {
+              const filtered = resList.filter((res) => res.info.avgRating > 4);
+              setResList(filtered);
+            }}
+          >
+            Top Rate Resto
+          </button>
+        </div>
       </div>
-      <div className="filter">
-        <button
-          className="filter-btn"
-          onClick={() => {
-            const filtered = resList.filter((res) => res.info.avgRating > 4);
-            setResList(filtered);
-          }}
-        >
-          Top Rate Resto
-        </button>
-      </div>
-      <div className="res-container">
+      <div className="mt-4 flex flex-wrap">
         {/* Resto card component to handle multiple cards */}
         {filteredList?.map((res) => {
           const resData = res.info;

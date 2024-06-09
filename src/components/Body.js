@@ -1,13 +1,14 @@
-import RestoCard from "./RestaurantCards";
+import RestoCard, { RestaurantCardsOffer } from "./RestaurantCards";
 import Shimmer from "./Shimmer";
 import { useEffect, useState } from "react";
 import useOnlineStatus from "../utils/useOnlineStatus";
-
+import { Link } from "react-router-dom";
 const Body = () => {
   const [resList, setResList] = useState([]);
   const [searchText, setSearchText] = useState("");
   const [filteredList, setFilteredList] = useState([]);
   const onlineStatus = useOnlineStatus();
+  const RestoCardsOffer = RestaurantCardsOffer(RestoCard);
   useEffect(() => {
     fetchData();
   }, []);
@@ -59,10 +60,12 @@ const Body = () => {
         </div>
         <div className="px-5 py-2 bg-blue-100 ml-3 rounded-md shadow-md">
           <button
-            className="filter-btn"
             onClick={() => {
-              const filtered = resList.filter((res) => res.info.avgRating > 4);
-              setResList(filtered);
+              const filtered = resList?.filter(
+                (res) => res?.info?.avgRating > 4
+              );
+              console.log("filtered", filtered);
+              setFilteredList(filtered);
             }}
           >
             Top Rate Resto
@@ -73,7 +76,16 @@ const Body = () => {
         {/* Resto card component to handle multiple cards */}
         {filteredList?.map((res) => {
           const resData = res.info;
-          return <RestoCard key={resData.id} resData={resData} />;
+          return (
+            <Link to={"/restaurants/" + resData.id}>
+              {Object.keys(resData?.aggregatedDiscountInfoV3 || {}).length !==
+              0 ? (
+                <RestoCardsOffer key={resData.id} resData={resData} />
+              ) : (
+                <RestoCard key={resData.id} resData={resData} />
+              )}
+            </Link>
+          );
         })}
       </div>
     </div>

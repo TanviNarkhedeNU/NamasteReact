@@ -24,7 +24,7 @@ export const RestaurantCardsOffer = (RestoCard) => {
     return (
       <>
         <h3 className="absolute text-black font-semibold text-lg bg-blue-100 rounded-md px-3">
-          {aggregatedDiscountInfoV3?.subHeader !== ""
+          {aggregatedDiscountInfoV3?.subHeader
             ? aggregatedDiscountInfoV3?.header +
               " " +
               aggregatedDiscountInfoV3?.subHeader

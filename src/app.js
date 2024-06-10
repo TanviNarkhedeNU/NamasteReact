@@ -7,6 +7,9 @@ import Contact from "./components/Contact";
 import Error from "./components/Error";
 import Shimmer from "./components/Shimmer";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
+import store from "./utils/store";
+import { Provider } from "react-redux";
+import Cart from "./components/Cart";
 // import RestaurantMenu from "./components/RestaurantMenu";
 const RestaurantMenu = lazy(() => import("./components/RestaurantMenu"));
 
@@ -14,11 +17,13 @@ const RestaurantMenu = lazy(() => import("./components/RestaurantMenu"));
 
 const AppLayout = () => {
   return (
-    <div className="app">
-      {/* header */} <Header />
-      {/* if path "/" we want Body , if path "/about" we want About and so on to display below header */}
-      <Outlet />
-    </div>
+    <Provider store={store}>
+      <div className="app">
+        {/* header */} <Header />
+        {/* if path "/" we want Body , if path "/about" we want About and so on to display below header */}
+        <Outlet />
+      </div>
+    </Provider>
   );
 };
 
@@ -38,6 +43,10 @@ const appRouter = createBrowserRouter([
       {
         path: "/contact",
         element: <Contact />,
+      },
+      {
+        path: "/cart",
+        element: <Cart />,
       },
       {
         path: "restaurants/:resId", //:resId means this part is dynamic

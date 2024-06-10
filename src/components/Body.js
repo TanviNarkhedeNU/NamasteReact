@@ -64,7 +64,6 @@ const Body = () => {
               const filtered = resList?.filter(
                 (res) => res?.info?.avgRating > 4
               );
-              console.log("filtered", filtered);
               setFilteredList(filtered);
             }}
           >
@@ -77,7 +76,7 @@ const Body = () => {
         {filteredList?.map((res) => {
           const resData = res.info;
           return (
-            <Link to={"/restaurants/" + resData.id}>
+            <Link to={"/restaurants/" + resData?.id}>
               {Object.keys(resData?.aggregatedDiscountInfoV3 || {}).length !==
               0 ? (
                 <RestoCardsOffer key={resData.id} resData={resData} />
